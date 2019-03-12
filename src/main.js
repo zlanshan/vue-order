@@ -24,7 +24,8 @@ Vue.prototype.$axios = axios;
 Vue.use(VueRouter);
 Vue.use(iView);
 // The routing configuration
-const Routers = [{ path: '/', redirect: '/admin' },
+// 路径匹配时先从/开始，再往后寻找匹配的，因而可以设置根目录进入login界面的  如果没有登录的话就不能进入商品页
+const Routers = [{ path: '/', redirect: '/login' },
     { path: '/login', component: Login, meta: '登录页面' },
     {
         path: '/admin',

@@ -16,7 +16,7 @@ export default {
        }).then(res=>{
         //  如果不设置withCredentials:true的话，，页面每次刷新时都得去登录，也能通过地址栏直接进入界面的
         // 如果设置的话，，可以通过地址栏之间进入界面的
-      // console.log(res);
+      console.log(res);
       const {code}=res.data;
       if(code==='nologin'){
         this.$router.push('/login');

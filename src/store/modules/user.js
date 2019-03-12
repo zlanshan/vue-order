@@ -8,7 +8,8 @@ export default {
     },
     actions: {
         login({ commit, state }, data) {
-            new Promise((resolve, reject) => {
+            // new Promise必须是作为返回值的，，不然是进入这个页面，，验证用户信息时无论是啥都会进入下一个界面的
+            return new Promise((resolve, reject) => {
                 axios({
                     method: 'post',
                     url: '/admin/account/login',
@@ -16,14 +17,16 @@ export default {
                     withCredentials: true,
                 }).then(res => {
                     const { message, status } = res.data;
+                    // console.log(status);
                     if (status === 0) {
                         state.username = message.uname;
                         state.identity = message.realname;
                         localStorage.setItem('username', message.uname);
                         localStorage.setItem('identity', message.realname);
 
-                        resolve(message);
+                        resolve();
                     }
+                    reject();
                 })
             })
         },

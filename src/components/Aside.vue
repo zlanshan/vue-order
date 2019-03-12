@@ -7,8 +7,7 @@
         </template>
         <MenuItem  v-for='(item2,index2) in item.group' :key='index2'                                                                                                                                                                                                                                                                                                                                                   
         :name='`${index+1}-${index2+1}`'>
-        <router-link :to='item2.src'>{{item2.content}}</router-link>
-        
+        <router-link :to='item2.src'>{{item2.content}}</router-link> 
         </MenuItem>  
       </Submenu>
     </Menu>
