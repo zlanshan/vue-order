@@ -1,28 +1,47 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  mounted(){
+    this.$axios({
+      url:'/admin/account/islogin',
+       withCredentials: true
+       }).then(res=>{
+        //  如果不设置withCredentials:true的话，，页面每次刷新时都得去登录，也能通过地址栏直接进入界面的
+        // 如果设置的话，，可以通过地址栏之间进入界面的
+      // console.log(res);
+      const {code}=res.data;
+      if(code==='nologin'){
+        this.$router.push('/login');
+      }
+
+    })
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  
+  /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 0px; */
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.mt20{
+  margin-top: 20px;
+}
+.mb20{
+  margin-bottom: 20px;
 }
 </style>
